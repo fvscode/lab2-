@@ -22,19 +22,19 @@ Time::Time() {
     _time.minute = 0;
     _time.second = 0;
 }
-time::time(int hour){
+Time::Time(int hour){
     if (hour < 0){
         _time.hour=0;
     } else {
         _time.hour = hour % 24;
     }
-    _time.minute= 0;
+    _time.minute = 0;
     _time.second = 0;
 }
 Time::Time(int hour, int minute) {
     if (minute < 0) minute = 0;
 
-    int total_minutes = minute; // what if i delete total.minutes
+    int total_minutes = minute; 
     _time.hour = (hour + total_minutes / 60) % 24;
     _time.minute = total_minutes % 60;
     _time.second = 0;
