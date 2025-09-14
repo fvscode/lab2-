@@ -32,6 +32,7 @@ Time::Time(int hour){
     _time.second = 0;
 }
 Time::Time(int hour, int minute) {
+    if (hour < 0) hour = 0;
     if (minute < 0) minute = 0;
 
     int total_minutes = minute; 
@@ -40,6 +41,8 @@ Time::Time(int hour, int minute) {
     _time.second = 0;
 }
 Time::Time(int hour, int minute, int second) {
+    if (hour < 0) hour = 0;
+    if (minute < 0) minute = 0;
     if (second < 0) second = 0;
 
     int total_seconds = second + minute * 60 + hour * 3600;
@@ -66,15 +69,15 @@ void Time::add(int seconds) {
         total_seconds += 86400;
     }
 
-    total_seconds %= 86400;
-
-    _time.hour = total_seconds / 3600;
-    total_seconds %= 3600;
-    _time.minute = total_seconds / 60;
-    _time.second = total_seconds % 60;
-}
-int Time::diff(Time sub) {
-    int this_seconds = _time.hour * 3600 + _time.minute * 60 + _time.second;
-    int sub_seconds = sub._time.hour * 3600 + sub._time.minute * 60 + sub._time.second;
-    return this_seconds - sub_seconds;
-}
+    total_seconds %= 86400;    
+ 
+    _time.hour = total_seconds / 3600; 
+    total_seconds %= 3600; 
+    _time.minute = total_seconds / 60; 
+    _time.second = total_seconds % 60; 
+} 
+int Time::diff(Time sub) { 
+    int this_seconds = _time.hour * 3600 + _time.minute * 60 + _time.second; 
+    int sub_seconds = sub._time.hour * 3600 + sub._time.minute * 60 + sub._time.second; 
+    return this_seconds - sub_seconds; 
+} 
